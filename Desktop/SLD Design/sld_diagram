@@ -1,0 +1,141 @@
+digraph SLD {
+    rankdir=LR;
+    node [fontname="Helvetica"];
+    graph [bgcolor=white, fontname="Helvetica"];
+    edge [fontname="Helvetica", fontsize=8];
+
+    T001 [label="Main Power Transformer\n1250.0kVA\n11000.0V/400.0V", shape=box, style=filled, fillcolor="#e1f5fe", fontsize=9]
+    B001 [label="Main Distribution Bus (MDB)\n400.0V\n2000.0A", shape=box, style=filled, fillcolor="#fff3e0", fontsize=9]
+    B002 [label="Production Area Distribution Bus\n400.0V\n800.0A", shape=box, style=filled, fillcolor="#f3e5f5", fontsize=9]
+    B003 [label="Office & Amenities Distribution Bus\n400.0V\n400.0A", shape=box, style=filled, fillcolor="#f3e5f5", fontsize=9]
+    L001 [label="CNC Milling Machine 1\n15.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L002 [label="CNC Milling Machine 2\n12.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L003 [label="CNC Lathe\n18.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L004 [label="Main Conveyor Belt Motor\n7.5kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L005 [label="Secondary Conveyor Motors\n5.5kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L006 [label="Welding Robot Power Supply\n25.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L007 [label="Production HVAC System\n45.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L008 [label="Dust Collection System\n22.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L009 [label="Office Lighting Circuit 1\n8.5kW\n230.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L010 [label="Office Lighting Circuit 2\n6.2kW\n230.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L011 [label="Office Computers & Equipment\n12.0kW\n230.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L012 [label="Kitchen Appliances\n15.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L013 [label="Office HVAC System\n28.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L014 [label="Emergency Lighting\n5.0kW\n230.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L015 [label="Critical Systems UPS\n20.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L016 [label="Process Water Pumps\n11.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L017 [label="Air Compressor\n30.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    L018 [label="Workshop Equipment\n8.0kW\n400.0V", shape=ellipse, style=filled, fillcolor="#e8f5e8", fontsize=9]
+    BR001 [label="BR001\n40.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR002 [label="BR002\n32.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR003 [label="BR003\n50.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR004 [label="BR004\n20.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR005 [label="BR005\n16.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR006 [label="BR006\n63.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR007 [label="BR007\n125.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR008 [label="BR008\n63.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR009 [label="BR009\n63.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR010 [label="BR010\n50.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR011 [label="BR011\n80.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR012 [label="BR012\n40.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR013 [label="BR013\n80.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR014 [label="BR014\n40.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR015 [label="BR015\n50.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR016 [label="BR016\n32.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR017 [label="BR017\n80.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+    BR018 [label="BR018\n20.0A", shape=diamond, style=filled, fillcolor="#ffebee", fontsize=9]
+
+    T001 -> B001 [arrowhead=normal, color=blue]
+    T001 -> B002 [arrowhead=normal, color=blue]
+    T001 -> B003 [arrowhead=normal, color=blue]
+    B001 -> B002 [arrowhead=normal, color=green]
+    B001 -> B003 [arrowhead=normal, color=green]
+    B001 -> L014 [arrowhead=normal, color=black]
+    B001 -> L015 [arrowhead=normal, color=black]
+    B001 -> L016 [arrowhead=normal, color=black]
+    B001 -> L017 [arrowhead=normal, color=black]
+    B001 -> L018 [arrowhead=normal, color=black]
+    B002 -> L001 [arrowhead=normal, color=black]
+    B002 -> L002 [arrowhead=normal, color=black]
+    B002 -> L003 [arrowhead=normal, color=black]
+    B002 -> L004 [arrowhead=normal, color=black]
+    B002 -> L005 [arrowhead=normal, color=black]
+    B002 -> L006 [arrowhead=normal, color=black]
+    B002 -> L007 [arrowhead=normal, color=black]
+    B002 -> L008 [arrowhead=normal, color=black]
+    B003 -> L009 [arrowhead=normal, color=black]
+    B003 -> L010 [arrowhead=normal, color=black]
+    B003 -> L011 [arrowhead=normal, color=black]
+    B003 -> L012 [arrowhead=normal, color=black]
+    B003 -> L013 [arrowhead=normal, color=black]
+    B002 -> BR001 [arrowhead=normal, color=red]
+    BR001 -> L001 [arrowhead=normal, color=red]
+    B002 -> BR002 [arrowhead=normal, color=red]
+    BR002 -> L002 [arrowhead=normal, color=red]
+    B002 -> BR003 [arrowhead=normal, color=red]
+    BR003 -> L003 [arrowhead=normal, color=red]
+    B002 -> BR004 [arrowhead=normal, color=red]
+    BR004 -> L004 [arrowhead=normal, color=red]
+    B002 -> BR005 [arrowhead=normal, color=red]
+    BR005 -> L005 [arrowhead=normal, color=red]
+    B002 -> BR006 [arrowhead=normal, color=red]
+    BR006 -> L006 [arrowhead=normal, color=red]
+    B002 -> BR007 [arrowhead=normal, color=red]
+    BR007 -> L007 [arrowhead=normal, color=red]
+    B002 -> BR008 [arrowhead=normal, color=red]
+    BR008 -> L008 [arrowhead=normal, color=red]
+    B003 -> BR009 [arrowhead=normal, color=red]
+    BR009 -> L009 [arrowhead=normal, color=red]
+    B003 -> BR010 [arrowhead=normal, color=red]
+    BR010 -> L010 [arrowhead=normal, color=red]
+    B003 -> BR011 [arrowhead=normal, color=red]
+    BR011 -> L011 [arrowhead=normal, color=red]
+    B003 -> BR012 [arrowhead=normal, color=red]
+    BR012 -> L012 [arrowhead=normal, color=red]
+    B003 -> BR013 [arrowhead=normal, color=red]
+    BR013 -> L013 [arrowhead=normal, color=red]
+    B001 -> BR014 [arrowhead=normal, color=red]
+    BR014 -> L014 [arrowhead=normal, color=red]
+    B001 -> BR015 [arrowhead=normal, color=red]
+    BR015 -> L015 [arrowhead=normal, color=red]
+    B001 -> BR016 [arrowhead=normal, color=red]
+    BR016 -> L016 [arrowhead=normal, color=red]
+    B001 -> BR017 [arrowhead=normal, color=red]
+    BR017 -> L017 [arrowhead=normal, color=red]
+    B001 -> BR018 [arrowhead=normal, color=red]
+    BR018 -> L018 [arrowhead=normal, color=red]
+    subgraph cluster_400.0V {
+        label="400.0V System";
+        style=filled;
+        color=lightgrey;
+        T001;
+        B001;
+        B002;
+        B003;
+        L001;
+        L002;
+        L003;
+        L004;
+        L005;
+        L006;
+        L007;
+        L008;
+        L012;
+        L013;
+        L015;
+        L016;
+        L017;
+        L018;
+    }
+
+    subgraph cluster_230.0V {
+        label="230.0V System";
+        style=filled;
+        color=lightgrey;
+        L009;
+        L010;
+        L011;
+        L014;
+    }
+
+}

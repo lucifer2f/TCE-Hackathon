@@ -1,0 +1,98 @@
+digraph SLD {
+  rankdir=LR;
+  node [fontname="Helvetica"];
+  edge [penwidth=1.0];
+
+  subgraph cluster_B001 {
+    style=dashed;
+    B001 [shape=circle, label="Main Distribution Bus (MDB)\n400.0V"];
+    L014 [shape=box, label="Emergency Lighting\n5.0kW"];
+    L015 [shape=box, label="Critical Systems UPS\n20.0kW"];
+    L016 [shape=box, label="Process Water Pumps\n11.0kW"];
+    L017 [shape=box, label="Air Compressor\n30.0kW"];
+    L018 [shape=box, label="Workshop Equipment\n8.0kW"];
+    BR014 [shape=box, width=0.5, height=0.3, label="CBBR014"];
+    BR015 [shape=box, width=0.5, height=0.3, label="CBBR015"];
+    BR016 [shape=box, width=0.5, height=0.3, label="CBBR016"];
+    BR017 [shape=box, width=0.5, height=0.3, label="CBBR017"];
+    BR018 [shape=box, width=0.5, height=0.3, label="CBBR018"];
+  }
+
+  subgraph cluster_B002 {
+    style=dashed;
+    B002 [shape=circle, label="Production Area Distribution Bus\n400.0V"];
+    L001 [shape=box, label="CNC Milling Machine 1\n15.0kW"];
+    L002 [shape=box, label="CNC Milling Machine 2\n12.0kW"];
+    L003 [shape=box, label="CNC Lathe\n18.0kW"];
+    L004 [shape=box, label="Main Conveyor Belt Motor\n7.5kW"];
+    L005 [shape=box, label="Secondary Conveyor Motors\n5.5kW"];
+    L006 [shape=box, label="Welding Robot Power Supply\n25.0kW"];
+    L007 [shape=box, label="Production HVAC System\n45.0kW"];
+    L008 [shape=box, label="Dust Collection System\n22.0kW"];
+    BR001 [shape=box, width=0.5, height=0.3, label="CBBR001"];
+    BR002 [shape=box, width=0.5, height=0.3, label="CBBR002"];
+    BR003 [shape=box, width=0.5, height=0.3, label="CBBR003"];
+    BR004 [shape=box, width=0.5, height=0.3, label="CBBR004"];
+    BR005 [shape=box, width=0.5, height=0.3, label="CBBR005"];
+    BR006 [shape=box, width=0.5, height=0.3, label="CBBR006"];
+    BR007 [shape=box, width=0.5, height=0.3, label="CBBR007"];
+    BR008 [shape=box, width=0.5, height=0.3, label="CBBR008"];
+  }
+
+  subgraph cluster_B003 {
+    style=dashed;
+    B003 [shape=circle, label="Office & Amenities Distribution Bus\n400.0V"];
+    L009 [shape=box, label="Office Lighting Circuit 1\n8.5kW"];
+    L010 [shape=box, label="Office Lighting Circuit 2\n6.2kW"];
+    L011 [shape=box, label="Office Computers & Equipment\n12.0kW"];
+    L012 [shape=box, label="Kitchen Appliances\n15.0kW"];
+    L013 [shape=box, label="Office HVAC System\n28.0kW"];
+    BR009 [shape=box, width=0.5, height=0.3, label="CBBR009"];
+    BR010 [shape=box, width=0.5, height=0.3, label="CBBR010"];
+    BR011 [shape=box, width=0.5, height=0.3, label="CBBR011"];
+    BR012 [shape=box, width=0.5, height=0.3, label="CBBR012"];
+    BR013 [shape=box, width=0.5, height=0.3, label="CBBR013"];
+  }
+
+  T001 [shape=circle, label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD><FONT POINT-SIZE="14">○</FONT></TD></TR><TR><TD><FONT POINT-SIZE="10">●</FONT></TD></TR><TR><TD>Main Power Transformer</TD></TR><TR><TD>1250.0kVA</TD></TR></TABLE>>];
+
+  T001 -> B001 [arrowhead=normal];
+  B001 -> B002 [arrowhead=normal];
+  B001 -> B003 [arrowhead=normal];
+  B002 -> BR001;
+  L001 -> BR001;
+  B002 -> BR002;
+  L002 -> BR002;
+  B002 -> BR003;
+  L003 -> BR003;
+  B002 -> BR004;
+  L004 -> BR004;
+  B002 -> BR005;
+  L005 -> BR005;
+  B002 -> BR006;
+  L006 -> BR006;
+  B002 -> BR007;
+  L007 -> BR007;
+  B002 -> BR008;
+  L008 -> BR008;
+  B003 -> BR009;
+  L009 -> BR009;
+  B003 -> BR010;
+  L010 -> BR010;
+  B003 -> BR011;
+  L011 -> BR011;
+  B003 -> BR012;
+  L012 -> BR012;
+  B003 -> BR013;
+  L013 -> BR013;
+  B001 -> BR014;
+  L014 -> BR014;
+  B001 -> BR015;
+  L015 -> BR015;
+  B001 -> BR016;
+  L016 -> BR016;
+  B001 -> BR017;
+  L017 -> BR017;
+  B001 -> BR018;
+  L018 -> BR018;
+}

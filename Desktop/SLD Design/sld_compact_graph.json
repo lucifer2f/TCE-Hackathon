@@ -1,0 +1,1046 @@
+{
+  "metadata": {
+    "project_name": "Advanced Manufacturing Plant - Electrical Distribution",
+    "standard": "IEC",
+    "voltage_levels": [
+      230.0,
+      400.0
+    ],
+    "total_components": 40,
+    "total_connections": 59
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "component_id": "T001",
+      "type": "transformer",
+      "name": "Main Power Transformer",
+      "rating_kva": 1250.0,
+      "primary_voltage": 11000.0,
+      "secondary_voltage": 400.0,
+      "properties": {
+        "type": "oil_immersed",
+        "vector_group": "Dyn11"
+      }
+    },
+    {
+      "id": 1,
+      "component_id": "B001",
+      "type": "main_bus",
+      "name": "Main Distribution Bus (MDB)",
+      "voltage": 400.0,
+      "current_rating_a": 2000.0,
+      "properties": {
+        "panel_type": "main",
+        "location": "Main Electrical Room"
+      }
+    },
+    {
+      "id": 2,
+      "component_id": "B002",
+      "type": "distribution_bus",
+      "name": "Production Area Distribution Bus",
+      "voltage": 400.0,
+      "current_rating_a": 800.0,
+      "properties": {
+        "panel_type": "distribution",
+        "location": "Production Floor"
+      }
+    },
+    {
+      "id": 3,
+      "component_id": "B003",
+      "type": "distribution_bus",
+      "name": "Office & Amenities Distribution Bus",
+      "voltage": 400.0,
+      "current_rating_a": 400.0,
+      "properties": {
+        "panel_type": "distribution",
+        "location": "Office Building"
+      }
+    },
+    {
+      "id": 4,
+      "component_id": "L001",
+      "type": "load",
+      "name": "CNC Milling Machine 1",
+      "power_kw": 15.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 5,
+      "component_id": "L002",
+      "type": "load",
+      "name": "CNC Milling Machine 2",
+      "power_kw": 12.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 6,
+      "component_id": "L003",
+      "type": "load",
+      "name": "CNC Lathe",
+      "power_kw": 18.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 7,
+      "component_id": "L004",
+      "type": "load",
+      "name": "Main Conveyor Belt Motor",
+      "power_kw": 7.5,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 8,
+      "component_id": "L005",
+      "type": "load",
+      "name": "Secondary Conveyor Motors",
+      "power_kw": 5.5,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 9,
+      "component_id": "L006",
+      "type": "load",
+      "name": "Welding Robot Power Supply",
+      "power_kw": 25.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "general",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 10,
+      "component_id": "L007",
+      "type": "load",
+      "name": "Production HVAC System",
+      "power_kw": 45.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "hvac",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 11,
+      "component_id": "L008",
+      "type": "load",
+      "name": "Dust Collection System",
+      "power_kw": 22.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B002"
+      }
+    },
+    {
+      "id": 12,
+      "component_id": "L009",
+      "type": "load",
+      "name": "Office Lighting Circuit 1",
+      "power_kw": 8.5,
+      "voltage": 230.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "lighting",
+        "priority": "non-essential",
+        "source_bus": "B003"
+      }
+    },
+    {
+      "id": 13,
+      "component_id": "L010",
+      "type": "load",
+      "name": "Office Lighting Circuit 2",
+      "power_kw": 6.2,
+      "voltage": 230.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "lighting",
+        "priority": "non-essential",
+        "source_bus": "B003"
+      }
+    },
+    {
+      "id": 14,
+      "component_id": "L011",
+      "type": "load",
+      "name": "Office Computers & Equipment",
+      "power_kw": 12.0,
+      "voltage": 230.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "general",
+        "priority": "non-essential",
+        "source_bus": "B003"
+      }
+    },
+    {
+      "id": 15,
+      "component_id": "L012",
+      "type": "load",
+      "name": "Kitchen Appliances",
+      "power_kw": 15.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "general",
+        "priority": "non-essential",
+        "source_bus": "B003"
+      }
+    },
+    {
+      "id": 16,
+      "component_id": "L013",
+      "type": "load",
+      "name": "Office HVAC System",
+      "power_kw": 28.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "hvac",
+        "priority": "essential",
+        "source_bus": "B003"
+      }
+    },
+    {
+      "id": 17,
+      "component_id": "L014",
+      "type": "load",
+      "name": "Emergency Lighting",
+      "power_kw": 5.0,
+      "voltage": 230.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "lighting",
+        "priority": "critical",
+        "source_bus": "B001"
+      }
+    },
+    {
+      "id": 18,
+      "component_id": "L015",
+      "type": "load",
+      "name": "Critical Systems UPS",
+      "power_kw": 20.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "ups",
+        "priority": "critical",
+        "source_bus": "B001"
+      }
+    },
+    {
+      "id": 19,
+      "component_id": "L016",
+      "type": "load",
+      "name": "Process Water Pumps",
+      "power_kw": 11.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B001"
+      }
+    },
+    {
+      "id": 20,
+      "component_id": "L017",
+      "type": "load",
+      "name": "Air Compressor",
+      "power_kw": 30.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "motor",
+        "priority": "essential",
+        "source_bus": "B001"
+      }
+    },
+    {
+      "id": 21,
+      "component_id": "L018",
+      "type": "load",
+      "name": "Workshop Equipment",
+      "power_kw": 8.0,
+      "voltage": 400.0,
+      "current_a": null,
+      "properties": {
+        "load_type": "general",
+        "priority": "non-essential",
+        "source_bus": "B001"
+      }
+    },
+    {
+      "id": 22,
+      "component_id": "BR001",
+      "type": "breaker",
+      "name": "BR001",
+      "rating_a": 40.0,
+      "properties": {
+        "protected_load": "L001",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 23,
+      "component_id": "BR002",
+      "type": "breaker",
+      "name": "BR002",
+      "rating_a": 32.0,
+      "properties": {
+        "protected_load": "L002",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 24,
+      "component_id": "BR003",
+      "type": "breaker",
+      "name": "BR003",
+      "rating_a": 50.0,
+      "properties": {
+        "protected_load": "L003",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 25,
+      "component_id": "BR004",
+      "type": "breaker",
+      "name": "BR004",
+      "rating_a": 20.0,
+      "properties": {
+        "protected_load": "L004",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 26,
+      "component_id": "BR005",
+      "type": "breaker",
+      "name": "BR005",
+      "rating_a": 16.0,
+      "properties": {
+        "protected_load": "L005",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 27,
+      "component_id": "BR006",
+      "type": "breaker",
+      "name": "BR006",
+      "rating_a": 63.0,
+      "properties": {
+        "protected_load": "L006",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 28,
+      "component_id": "BR007",
+      "type": "breaker",
+      "name": "BR007",
+      "rating_a": 125.0,
+      "properties": {
+        "protected_load": "L007",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 29,
+      "component_id": "BR008",
+      "type": "breaker",
+      "name": "BR008",
+      "rating_a": 63.0,
+      "properties": {
+        "protected_load": "L008",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 30,
+      "component_id": "BR009",
+      "type": "breaker",
+      "name": "BR009",
+      "rating_a": 63.0,
+      "properties": {
+        "protected_load": "L009",
+        "breaking_capacity_ka": 10.0
+      }
+    },
+    {
+      "id": 31,
+      "component_id": "BR010",
+      "type": "breaker",
+      "name": "BR010",
+      "rating_a": 50.0,
+      "properties": {
+        "protected_load": "L010",
+        "breaking_capacity_ka": 10.0
+      }
+    },
+    {
+      "id": 32,
+      "component_id": "BR011",
+      "type": "breaker",
+      "name": "BR011",
+      "rating_a": 80.0,
+      "properties": {
+        "protected_load": "L011",
+        "breaking_capacity_ka": 10.0
+      }
+    },
+    {
+      "id": 33,
+      "component_id": "BR012",
+      "type": "breaker",
+      "name": "BR012",
+      "rating_a": 40.0,
+      "properties": {
+        "protected_load": "L012",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 34,
+      "component_id": "BR013",
+      "type": "breaker",
+      "name": "BR013",
+      "rating_a": 80.0,
+      "properties": {
+        "protected_load": "L013",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 35,
+      "component_id": "BR014",
+      "type": "breaker",
+      "name": "BR014",
+      "rating_a": 40.0,
+      "properties": {
+        "protected_load": "L014",
+        "breaking_capacity_ka": 10.0
+      }
+    },
+    {
+      "id": 36,
+      "component_id": "BR015",
+      "type": "breaker",
+      "name": "BR015",
+      "rating_a": 50.0,
+      "properties": {
+        "protected_load": "L015",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 37,
+      "component_id": "BR016",
+      "type": "breaker",
+      "name": "BR016",
+      "rating_a": 32.0,
+      "properties": {
+        "protected_load": "L016",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 38,
+      "component_id": "BR017",
+      "type": "breaker",
+      "name": "BR017",
+      "rating_a": 80.0,
+      "properties": {
+        "protected_load": "L017",
+        "breaking_capacity_ka": 35.0
+      }
+    },
+    {
+      "id": 39,
+      "component_id": "BR018",
+      "type": "breaker",
+      "name": "BR018",
+      "rating_a": 20.0,
+      "properties": {
+        "protected_load": "L018",
+        "breaking_capacity_ka": 35.0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": 0,
+      "from": "T001",
+      "to": "B001",
+      "type": "transformer_bus",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 1,
+      "from": "T001",
+      "to": "B002",
+      "type": "transformer_bus",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 2,
+      "from": "T001",
+      "to": "B003",
+      "type": "transformer_bus",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 3,
+      "from": "B001",
+      "to": "B002",
+      "type": "bus_bus",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 4,
+      "from": "B001",
+      "to": "B003",
+      "type": "bus_bus",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 5,
+      "from": "B001",
+      "to": "L014",
+      "type": "bus_load",
+      "properties": {
+        "rating": 230.0
+      }
+    },
+    {
+      "id": 6,
+      "from": "B001",
+      "to": "L015",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 7,
+      "from": "B001",
+      "to": "L016",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 8,
+      "from": "B001",
+      "to": "L017",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 9,
+      "from": "B001",
+      "to": "L018",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 10,
+      "from": "B002",
+      "to": "L001",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 11,
+      "from": "B002",
+      "to": "L002",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 12,
+      "from": "B002",
+      "to": "L003",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 13,
+      "from": "B002",
+      "to": "L004",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 14,
+      "from": "B002",
+      "to": "L005",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 15,
+      "from": "B002",
+      "to": "L006",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 16,
+      "from": "B002",
+      "to": "L007",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 17,
+      "from": "B002",
+      "to": "L008",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 18,
+      "from": "B003",
+      "to": "L009",
+      "type": "bus_load",
+      "properties": {
+        "rating": 230.0
+      }
+    },
+    {
+      "id": 19,
+      "from": "B003",
+      "to": "L010",
+      "type": "bus_load",
+      "properties": {
+        "rating": 230.0
+      }
+    },
+    {
+      "id": 20,
+      "from": "B003",
+      "to": "L011",
+      "type": "bus_load",
+      "properties": {
+        "rating": 230.0
+      }
+    },
+    {
+      "id": 21,
+      "from": "B003",
+      "to": "L012",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 22,
+      "from": "B003",
+      "to": "L013",
+      "type": "bus_load",
+      "properties": {
+        "rating": 400.0
+      }
+    },
+    {
+      "id": 23,
+      "from": "B002",
+      "to": "BR001",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 40.0
+      }
+    },
+    {
+      "id": 24,
+      "from": "BR001",
+      "to": "L001",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 40.0
+      }
+    },
+    {
+      "id": 25,
+      "from": "B002",
+      "to": "BR002",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 32.0
+      }
+    },
+    {
+      "id": 26,
+      "from": "BR002",
+      "to": "L002",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 32.0
+      }
+    },
+    {
+      "id": 27,
+      "from": "B002",
+      "to": "BR003",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 50.0
+      }
+    },
+    {
+      "id": 28,
+      "from": "BR003",
+      "to": "L003",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 50.0
+      }
+    },
+    {
+      "id": 29,
+      "from": "B002",
+      "to": "BR004",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 20.0
+      }
+    },
+    {
+      "id": 30,
+      "from": "BR004",
+      "to": "L004",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 20.0
+      }
+    },
+    {
+      "id": 31,
+      "from": "B002",
+      "to": "BR005",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 16.0
+      }
+    },
+    {
+      "id": 32,
+      "from": "BR005",
+      "to": "L005",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 16.0
+      }
+    },
+    {
+      "id": 33,
+      "from": "B002",
+      "to": "BR006",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 63.0
+      }
+    },
+    {
+      "id": 34,
+      "from": "BR006",
+      "to": "L006",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 63.0
+      }
+    },
+    {
+      "id": 35,
+      "from": "B002",
+      "to": "BR007",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 125.0
+      }
+    },
+    {
+      "id": 36,
+      "from": "BR007",
+      "to": "L007",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 125.0
+      }
+    },
+    {
+      "id": 37,
+      "from": "B002",
+      "to": "BR008",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 63.0
+      }
+    },
+    {
+      "id": 38,
+      "from": "BR008",
+      "to": "L008",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 63.0
+      }
+    },
+    {
+      "id": 39,
+      "from": "B003",
+      "to": "BR009",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 63.0
+      }
+    },
+    {
+      "id": 40,
+      "from": "BR009",
+      "to": "L009",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 63.0
+      }
+    },
+    {
+      "id": 41,
+      "from": "B003",
+      "to": "BR010",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 50.0
+      }
+    },
+    {
+      "id": 42,
+      "from": "BR010",
+      "to": "L010",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 50.0
+      }
+    },
+    {
+      "id": 43,
+      "from": "B003",
+      "to": "BR011",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 80.0
+      }
+    },
+    {
+      "id": 44,
+      "from": "BR011",
+      "to": "L011",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 80.0
+      }
+    },
+    {
+      "id": 45,
+      "from": "B003",
+      "to": "BR012",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 40.0
+      }
+    },
+    {
+      "id": 46,
+      "from": "BR012",
+      "to": "L012",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 40.0
+      }
+    },
+    {
+      "id": 47,
+      "from": "B003",
+      "to": "BR013",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 80.0
+      }
+    },
+    {
+      "id": 48,
+      "from": "BR013",
+      "to": "L013",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 80.0
+      }
+    },
+    {
+      "id": 49,
+      "from": "B001",
+      "to": "BR014",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 40.0
+      }
+    },
+    {
+      "id": 50,
+      "from": "BR014",
+      "to": "L014",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 40.0
+      }
+    },
+    {
+      "id": 51,
+      "from": "B001",
+      "to": "BR015",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 50.0
+      }
+    },
+    {
+      "id": 52,
+      "from": "BR015",
+      "to": "L015",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 50.0
+      }
+    },
+    {
+      "id": 53,
+      "from": "B001",
+      "to": "BR016",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 32.0
+      }
+    },
+    {
+      "id": 54,
+      "from": "BR016",
+      "to": "L016",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 32.0
+      }
+    },
+    {
+      "id": 55,
+      "from": "B001",
+      "to": "BR017",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 80.0
+      }
+    },
+    {
+      "id": 56,
+      "from": "BR017",
+      "to": "L017",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 80.0
+      }
+    },
+    {
+      "id": 57,
+      "from": "B001",
+      "to": "BR018",
+      "type": "bus_breaker",
+      "properties": {
+        "rating": 20.0
+      }
+    },
+    {
+      "id": 58,
+      "from": "BR018",
+      "to": "L018",
+      "type": "breaker_load",
+      "properties": {
+        "rating": 20.0
+      }
+    }
+  ]
+}

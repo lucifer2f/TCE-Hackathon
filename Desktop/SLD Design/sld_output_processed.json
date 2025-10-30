@@ -1,0 +1,1961 @@
+{
+  "sld_json": {
+    "project_info": {
+      "name": "Advanced Manufacturing Plant - Electrical Distribution",
+      "id": "AMP-ED-2024",
+      "standard": "IEC",
+      "voltage_system": "LV/MV",
+      "ambient_temperature_c": 35.0,
+      "altitude_m": 150.0,
+      "soil_resistivity_ohm_m": null,
+      "created_by": "Electrical Design Automation System",
+      "created_date": "2025-10-30T19:54:04.052216",
+      "version": "2.0"
+    },
+    "electrical_hierarchy": {
+      "transformers": [
+        {
+          "id": "T001",
+          "name": "Main Power Transformer",
+          "rating_kva": 1250.0,
+          "primary_voltage": 11000.0,
+          "secondary_voltage": 400.0,
+          "type": "oil_immersed",
+          "vector_group": "Dyn11",
+          "connected_buses": []
+        }
+      ],
+      "main_buses": [
+        {
+          "id": "B001",
+          "name": "Main Distribution Bus (MDB)",
+          "voltage": 400.0,
+          "phases": 3,
+          "rated_current_a": 2000.0,
+          "short_circuit_rating_ka": 50.0,
+          "parent_bus": null,
+          "child_buses": [
+            "B002",
+            "B003"
+          ],
+          "connected_loads": [
+            "L014",
+            "L015",
+            "L016",
+            "L017",
+            "L018"
+          ],
+          "connected_transformers": [],
+          "panel_type": "main",
+          "location": "Main Electrical Room"
+        }
+      ],
+      "distribution_buses": [
+        {
+          "id": "B002",
+          "name": "Production Area Distribution Bus",
+          "voltage": 400.0,
+          "phases": 3,
+          "rated_current_a": 800.0,
+          "short_circuit_rating_ka": 35.0,
+          "parent_bus": "B001",
+          "child_buses": [],
+          "connected_loads": [
+            "L001",
+            "L002",
+            "L003",
+            "L004",
+            "L005",
+            "L006",
+            "L007",
+            "L008"
+          ],
+          "connected_transformers": [],
+          "panel_type": "distribution",
+          "location": "Production Floor"
+        },
+        {
+          "id": "B003",
+          "name": "Office & Amenities Distribution Bus",
+          "voltage": 400.0,
+          "phases": 3,
+          "rated_current_a": 400.0,
+          "short_circuit_rating_ka": 25.0,
+          "parent_bus": "B001",
+          "child_buses": [],
+          "connected_loads": [
+            "L009",
+            "L010",
+            "L011",
+            "L012",
+            "L013"
+          ],
+          "connected_transformers": [],
+          "panel_type": "distribution",
+          "location": "Office Building"
+        }
+      ],
+      "loads": [
+        {
+          "id": "L001",
+          "name": "CNC Milling Machine 1",
+          "power_kw": 15.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": false,
+          "cable_length": 25.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L002",
+          "name": "CNC Milling Machine 2",
+          "power_kw": 12.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": false,
+          "cable_length": 30.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L003",
+          "name": "CNC Lathe",
+          "power_kw": 18.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": false,
+          "cable_length": 20.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L004",
+          "name": "Main Conveyor Belt Motor",
+          "power_kw": 7.5,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": true,
+          "cable_length": 45.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L005",
+          "name": "Secondary Conveyor Motors",
+          "power_kw": 5.5,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": false,
+          "cable_length": 35.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L006",
+          "name": "Welding Robot Power Supply",
+          "power_kw": 25.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "general",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": false,
+          "cable_length": 15.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L007",
+          "name": "Production HVAC System",
+          "power_kw": 45.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "hvac",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": true,
+          "cable_length": 50.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L008",
+          "name": "Dust Collection System",
+          "power_kw": 22.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B002",
+          "priority": "essential",
+          "redundancy": false,
+          "cable_length": 40.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L009",
+          "name": "Office Lighting Circuit 1",
+          "power_kw": 8.5,
+          "voltage": 230.0,
+          "phases": 1,
+          "load_type": "lighting",
+          "source_bus": "B003",
+          "priority": "non-essential",
+          "redundancy": false,
+          "cable_length": 60.0,
+          "installation_method": "conduit"
+        },
+        {
+          "id": "L010",
+          "name": "Office Lighting Circuit 2",
+          "power_kw": 6.2,
+          "voltage": 230.0,
+          "phases": 1,
+          "load_type": "lighting",
+          "source_bus": "B003",
+          "priority": "non-essential",
+          "redundancy": false,
+          "cable_length": 55.0,
+          "installation_method": "conduit"
+        },
+        {
+          "id": "L011",
+          "name": "Office Computers & Equipment",
+          "power_kw": 12.0,
+          "voltage": 230.0,
+          "phases": 1,
+          "load_type": "general",
+          "source_bus": "B003",
+          "priority": "non-essential",
+          "redundancy": false,
+          "cable_length": 45.0,
+          "installation_method": "conduit"
+        },
+        {
+          "id": "L012",
+          "name": "Kitchen Appliances",
+          "power_kw": 15.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "general",
+          "source_bus": "B003",
+          "priority": "non-essential",
+          "redundancy": false,
+          "cable_length": 30.0,
+          "installation_method": "conduit"
+        },
+        {
+          "id": "L013",
+          "name": "Office HVAC System",
+          "power_kw": 28.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "hvac",
+          "source_bus": "B003",
+          "priority": "essential",
+          "redundancy": true,
+          "cable_length": 35.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L014",
+          "name": "Emergency Lighting",
+          "power_kw": 5.0,
+          "voltage": 230.0,
+          "phases": 1,
+          "load_type": "lighting",
+          "source_bus": "B001",
+          "priority": "critical",
+          "redundancy": true,
+          "cable_length": 80.0,
+          "installation_method": "conduit"
+        },
+        {
+          "id": "L015",
+          "name": "Critical Systems UPS",
+          "power_kw": 20.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "ups",
+          "source_bus": "B001",
+          "priority": "critical",
+          "redundancy": true,
+          "cable_length": 25.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L016",
+          "name": "Process Water Pumps",
+          "power_kw": 11.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B001",
+          "priority": "essential",
+          "redundancy": true,
+          "cable_length": 65.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L017",
+          "name": "Air Compressor",
+          "power_kw": 30.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "motor",
+          "source_bus": "B001",
+          "priority": "essential",
+          "redundancy": false,
+          "cable_length": 40.0,
+          "installation_method": "tray"
+        },
+        {
+          "id": "L018",
+          "name": "Workshop Equipment",
+          "power_kw": 8.0,
+          "voltage": 400.0,
+          "phases": 3,
+          "load_type": "general",
+          "source_bus": "B001",
+          "priority": "non-essential",
+          "redundancy": false,
+          "cable_length": 70.0,
+          "installation_method": "tray"
+        }
+      ]
+    },
+    "connectivity": {
+      "transformer_to_bus": [
+        {
+          "transformer_id": "T001",
+          "bus_id": "B001",
+          "voltage": 400.0,
+          "connection_type": "direct"
+        },
+        {
+          "transformer_id": "T001",
+          "bus_id": "B002",
+          "voltage": 400.0,
+          "connection_type": "direct"
+        },
+        {
+          "transformer_id": "T001",
+          "bus_id": "B003",
+          "voltage": 400.0,
+          "connection_type": "direct"
+        }
+      ],
+      "bus_to_bus": [
+        {
+          "parent_bus": "B001",
+          "child_bus": "B002",
+          "voltage": 400.0,
+          "connection_type": "busbar"
+        },
+        {
+          "parent_bus": "B001",
+          "child_bus": "B003",
+          "voltage": 400.0,
+          "connection_type": "busbar"
+        }
+      ],
+      "bus_to_load": [
+        {
+          "bus_id": "B001",
+          "load_id": "L014",
+          "voltage": 230.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B001",
+          "load_id": "L015",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B001",
+          "load_id": "L016",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B001",
+          "load_id": "L017",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B001",
+          "load_id": "L018",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L001",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L002",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L003",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L004",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L005",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L006",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L007",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B002",
+          "load_id": "L008",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B003",
+          "load_id": "L009",
+          "voltage": 230.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B003",
+          "load_id": "L010",
+          "voltage": 230.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B003",
+          "load_id": "L011",
+          "voltage": 230.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B003",
+          "load_id": "L012",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        },
+        {
+          "bus_id": "B003",
+          "load_id": "L013",
+          "voltage": 400.0,
+          "cable_required": true,
+          "protection_required": true
+        }
+      ],
+      "cable_routes": [
+        {
+          "cable_id": "C001",
+          "from_equipment": "B002",
+          "to_equipment": "L001",
+          "length_m": 25.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 10,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C002",
+          "from_equipment": "B002",
+          "to_equipment": "L002",
+          "length_m": 30.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 6,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C003",
+          "from_equipment": "B002",
+          "to_equipment": "L003",
+          "length_m": 20.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 16,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C004",
+          "from_equipment": "B002",
+          "to_equipment": "L004",
+          "length_m": 45.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 2.5,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C005",
+          "from_equipment": "B002",
+          "to_equipment": "L005",
+          "length_m": 35.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 1.5,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C006",
+          "from_equipment": "B002",
+          "to_equipment": "L006",
+          "length_m": 15.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 25,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C007",
+          "from_equipment": "B002",
+          "to_equipment": "L007",
+          "length_m": 50.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 70,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C008",
+          "from_equipment": "B002",
+          "to_equipment": "L008",
+          "length_m": 40.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 16,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C009",
+          "from_equipment": "B003",
+          "to_equipment": "L009",
+          "length_m": 60.0,
+          "cable_type": "XLPE",
+          "cores": 3,
+          "size_sqmm": 25,
+          "installation_method": "conduit"
+        },
+        {
+          "cable_id": "C010",
+          "from_equipment": "B003",
+          "to_equipment": "L010",
+          "length_m": 55.0,
+          "cable_type": "XLPE",
+          "cores": 3,
+          "size_sqmm": 16,
+          "installation_method": "conduit"
+        },
+        {
+          "cable_id": "C011",
+          "from_equipment": "B003",
+          "to_equipment": "L011",
+          "length_m": 45.0,
+          "cable_type": "XLPE",
+          "cores": 3,
+          "size_sqmm": 35,
+          "installation_method": "conduit"
+        },
+        {
+          "cable_id": "C012",
+          "from_equipment": "B003",
+          "to_equipment": "L012",
+          "length_m": 30.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 10,
+          "installation_method": "conduit"
+        },
+        {
+          "cable_id": "C013",
+          "from_equipment": "B003",
+          "to_equipment": "L013",
+          "length_m": 35.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 25,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C014",
+          "from_equipment": "B001",
+          "to_equipment": "L014",
+          "length_m": 80.0,
+          "cable_type": "XLPE",
+          "cores": 3,
+          "size_sqmm": 10,
+          "installation_method": "conduit"
+        },
+        {
+          "cable_id": "C015",
+          "from_equipment": "B001",
+          "to_equipment": "L015",
+          "length_m": 25.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 16,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C016",
+          "from_equipment": "B001",
+          "to_equipment": "L016",
+          "length_m": 65.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 4,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C017",
+          "from_equipment": "B001",
+          "to_equipment": "L017",
+          "length_m": 40.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 35,
+          "installation_method": "tray"
+        },
+        {
+          "cable_id": "C018",
+          "from_equipment": "B001",
+          "to_equipment": "L018",
+          "length_m": 70.0,
+          "cable_type": "XLPE",
+          "cores": 4,
+          "size_sqmm": 2.5,
+          "installation_method": "tray"
+        }
+      ],
+      "protection_zones": [
+        {
+          "breaker_id": "BR001",
+          "protected_load": "L001",
+          "source_bus": "B002",
+          "breaker_rating_a": 40.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR002",
+          "protected_load": "L002",
+          "source_bus": "B002",
+          "breaker_rating_a": 32.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR003",
+          "protected_load": "L003",
+          "source_bus": "B002",
+          "breaker_rating_a": 50.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR004",
+          "protected_load": "L004",
+          "source_bus": "B002",
+          "breaker_rating_a": 20.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR005",
+          "protected_load": "L005",
+          "source_bus": "B002",
+          "breaker_rating_a": 16.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR006",
+          "protected_load": "L006",
+          "source_bus": "B002",
+          "breaker_rating_a": 63.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR007",
+          "protected_load": "L007",
+          "source_bus": "B002",
+          "breaker_rating_a": 125.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR008",
+          "protected_load": "L008",
+          "source_bus": "B002",
+          "breaker_rating_a": 63.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR009",
+          "protected_load": "L009",
+          "source_bus": "B003",
+          "breaker_rating_a": 63.0,
+          "breaking_capacity_ka": 10.0
+        },
+        {
+          "breaker_id": "BR010",
+          "protected_load": "L010",
+          "source_bus": "B003",
+          "breaker_rating_a": 50.0,
+          "breaking_capacity_ka": 10.0
+        },
+        {
+          "breaker_id": "BR011",
+          "protected_load": "L011",
+          "source_bus": "B003",
+          "breaker_rating_a": 80.0,
+          "breaking_capacity_ka": 10.0
+        },
+        {
+          "breaker_id": "BR012",
+          "protected_load": "L012",
+          "source_bus": "B003",
+          "breaker_rating_a": 40.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR013",
+          "protected_load": "L013",
+          "source_bus": "B003",
+          "breaker_rating_a": 80.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR014",
+          "protected_load": "L014",
+          "source_bus": "B001",
+          "breaker_rating_a": 40.0,
+          "breaking_capacity_ka": 10.0
+        },
+        {
+          "breaker_id": "BR015",
+          "protected_load": "L015",
+          "source_bus": "B001",
+          "breaker_rating_a": 50.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR016",
+          "protected_load": "L016",
+          "source_bus": "B001",
+          "breaker_rating_a": 32.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR017",
+          "protected_load": "L017",
+          "source_bus": "B001",
+          "breaker_rating_a": 80.0,
+          "breaking_capacity_ka": 35.0
+        },
+        {
+          "breaker_id": "BR018",
+          "protected_load": "L018",
+          "source_bus": "B001",
+          "breaker_rating_a": 20.0,
+          "breaking_capacity_ka": 35.0
+        }
+      ]
+    },
+    "components": [
+      {
+        "id": "T001",
+        "name": "Main Power Transformer",
+        "type": "transformer",
+        "symbol_type": "power_transformer",
+        "voltage_primary": 11000.0,
+        "voltage_secondary": 400.0,
+        "rating_kva": 1250.0,
+        "x_position": 50.0,
+        "y_position": 100.0,
+        "width": 80,
+        "height": 60,
+        "connections": [
+          "primary",
+          "secondary"
+        ],
+        "metadata": {
+          "type": "oil_immersed",
+          "vector_group": "Dyn11",
+          "cooling": "ONAN",
+          "impedance_percent": 6.5
+        }
+      },
+      {
+        "id": "B001",
+        "name": "Main Distribution Bus (MDB)",
+        "type": "bus",
+        "symbol_type": "busbar",
+        "voltage": 400.0,
+        "current_rating_a": 2000.0,
+        "x_position": 200.0,
+        "y_position": 300.0,
+        "width": 300,
+        "height": 20,
+        "orientation": "horizontal",
+        "connections": [
+          "L014",
+          "L015",
+          "L016",
+          "L017",
+          "L018",
+          "B002",
+          "B003"
+        ],
+        "metadata": {
+          "panel_type": "main",
+          "location": "Main Electrical Room",
+          "busbar_material": "copper",
+          "short_circuit_rating_ka": 50.0
+        }
+      },
+      {
+        "id": "B002",
+        "name": "Production Area Distribution Bus",
+        "type": "bus",
+        "symbol_type": "distribution_bus",
+        "voltage": 400.0,
+        "current_rating_a": 800.0,
+        "x_position": 400.0,
+        "y_position": 300.0,
+        "width": 200,
+        "height": 15,
+        "orientation": "horizontal",
+        "connections": [
+          "L001",
+          "L002",
+          "L003",
+          "L004",
+          "L005",
+          "L006",
+          "L007",
+          "L008"
+        ],
+        "metadata": {
+          "panel_type": "distribution",
+          "location": "Production Floor",
+          "parent_bus": "B001"
+        }
+      },
+      {
+        "id": "B003",
+        "name": "Office & Amenities Distribution Bus",
+        "type": "bus",
+        "symbol_type": "distribution_bus",
+        "voltage": 400.0,
+        "current_rating_a": 400.0,
+        "x_position": 400.0,
+        "y_position": 420.0,
+        "width": 200,
+        "height": 15,
+        "orientation": "horizontal",
+        "connections": [
+          "L009",
+          "L010",
+          "L011",
+          "L012",
+          "L013"
+        ],
+        "metadata": {
+          "panel_type": "distribution",
+          "location": "Office Building",
+          "parent_bus": "B001"
+        }
+      },
+      {
+        "id": "L001",
+        "name": "CNC Milling Machine 1",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 15.0,
+        "phases": 3,
+        "x_position": 650.0,
+        "y_position": 250.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L002",
+        "name": "CNC Milling Machine 2",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 12.0,
+        "phases": 3,
+        "x_position": 650.0,
+        "y_position": 330.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L003",
+        "name": "CNC Lathe",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 18.0,
+        "phases": 3,
+        "x_position": 650.0,
+        "y_position": 410.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L004",
+        "name": "Main Conveyor Belt Motor",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 7.5,
+        "phases": 3,
+        "x_position": 650.0,
+        "y_position": 490.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L005",
+        "name": "Secondary Conveyor Motors",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 5.5,
+        "phases": 3,
+        "x_position": 650.0,
+        "y_position": 570.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L006",
+        "name": "Welding Robot Power Supply",
+        "type": "load",
+        "symbol_type": "general_load",
+        "voltage": 400.0,
+        "power_kw": 25.0,
+        "phases": 3,
+        "x_position": 800.0,
+        "y_position": 250.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "general",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.9,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L007",
+        "name": "Production HVAC System",
+        "type": "load",
+        "symbol_type": "hvac_unit",
+        "voltage": 400.0,
+        "power_kw": 45.0,
+        "phases": 3,
+        "x_position": 800.0,
+        "y_position": 330.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "hvac",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L008",
+        "name": "Dust Collection System",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 22.0,
+        "phases": 3,
+        "x_position": 800.0,
+        "y_position": 410.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B002"
+        }
+      },
+      {
+        "id": "L009",
+        "name": "Office Lighting Circuit 1",
+        "type": "load",
+        "symbol_type": "lighting_circuit",
+        "voltage": 230.0,
+        "power_kw": 8.5,
+        "phases": 1,
+        "x_position": 800.0,
+        "y_position": 490.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "lighting",
+          "priority": "non-essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B003"
+        }
+      },
+      {
+        "id": "L010",
+        "name": "Office Lighting Circuit 2",
+        "type": "load",
+        "symbol_type": "lighting_circuit",
+        "voltage": 230.0,
+        "power_kw": 6.2,
+        "phases": 1,
+        "x_position": 800.0,
+        "y_position": 570.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "lighting",
+          "priority": "non-essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B003"
+        }
+      },
+      {
+        "id": "L011",
+        "name": "Office Computers & Equipment",
+        "type": "load",
+        "symbol_type": "general_load",
+        "voltage": 230.0,
+        "power_kw": 12.0,
+        "phases": 1,
+        "x_position": 950.0,
+        "y_position": 250.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "general",
+          "priority": "non-essential",
+          "efficiency": 0.9,
+          "power_factor": 0.95,
+          "source_bus": "B003"
+        }
+      },
+      {
+        "id": "L012",
+        "name": "Kitchen Appliances",
+        "type": "load",
+        "symbol_type": "general_load",
+        "voltage": 400.0,
+        "power_kw": 15.0,
+        "phases": 3,
+        "x_position": 950.0,
+        "y_position": 330.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "general",
+          "priority": "non-essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B003"
+        }
+      },
+      {
+        "id": "L013",
+        "name": "Office HVAC System",
+        "type": "load",
+        "symbol_type": "hvac_unit",
+        "voltage": 400.0,
+        "power_kw": 28.0,
+        "phases": 3,
+        "x_position": 950.0,
+        "y_position": 410.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "hvac",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B003"
+        }
+      },
+      {
+        "id": "L014",
+        "name": "Emergency Lighting",
+        "type": "load",
+        "symbol_type": "lighting_circuit",
+        "voltage": 230.0,
+        "power_kw": 5.0,
+        "phases": 1,
+        "x_position": 950.0,
+        "y_position": 490.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "lighting",
+          "priority": "critical",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B001"
+        }
+      },
+      {
+        "id": "L015",
+        "name": "Critical Systems UPS",
+        "type": "load",
+        "symbol_type": "ups_system",
+        "voltage": 400.0,
+        "power_kw": 20.0,
+        "phases": 3,
+        "x_position": 950.0,
+        "y_position": 570.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "ups",
+          "priority": "critical",
+          "efficiency": 0.9,
+          "power_factor": 0.9,
+          "source_bus": "B001"
+        }
+      },
+      {
+        "id": "L016",
+        "name": "Process Water Pumps",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 11.0,
+        "phases": 3,
+        "x_position": 1100.0,
+        "y_position": 250.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B001"
+        }
+      },
+      {
+        "id": "L017",
+        "name": "Air Compressor",
+        "type": "load",
+        "symbol_type": "induction_motor",
+        "voltage": 400.0,
+        "power_kw": 30.0,
+        "phases": 3,
+        "x_position": 1100.0,
+        "y_position": 330.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "motor",
+          "priority": "essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B001"
+        }
+      },
+      {
+        "id": "L018",
+        "name": "Workshop Equipment",
+        "type": "load",
+        "symbol_type": "general_load",
+        "voltage": 400.0,
+        "power_kw": 8.0,
+        "phases": 3,
+        "x_position": 1100.0,
+        "y_position": 410.0,
+        "width": 60,
+        "height": 40,
+        "connections": [
+          "input"
+        ],
+        "metadata": {
+          "load_type": "general",
+          "priority": "non-essential",
+          "efficiency": 0.9,
+          "power_factor": 0.85,
+          "source_bus": "B001"
+        }
+      }
+    ],
+    "cables": [
+      {
+        "id": "C001",
+        "from_equipment": "B002",
+        "to_equipment": "L001",
+        "cores": 4,
+        "size_sqmm": 10,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 25.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.8,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C002",
+        "from_equipment": "B002",
+        "to_equipment": "L002",
+        "cores": 4,
+        "size_sqmm": 6,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 30.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.8,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C003",
+        "from_equipment": "B002",
+        "to_equipment": "L003",
+        "cores": 4,
+        "size_sqmm": 16,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 20.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.8,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C004",
+        "from_equipment": "B002",
+        "to_equipment": "L004",
+        "cores": 4,
+        "size_sqmm": 2.5,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 45.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.75,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C005",
+        "from_equipment": "B002",
+        "to_equipment": "L005",
+        "cores": 4,
+        "size_sqmm": 1.5,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 35.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.75,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C006",
+        "from_equipment": "B002",
+        "to_equipment": "L006",
+        "cores": 4,
+        "size_sqmm": 25,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 15.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.8,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C007",
+        "from_equipment": "B002",
+        "to_equipment": "L007",
+        "cores": 4,
+        "size_sqmm": 70,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 50.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.7,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C008",
+        "from_equipment": "B002",
+        "to_equipment": "L008",
+        "cores": 4,
+        "size_sqmm": 16,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 40.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.75,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C009",
+        "from_equipment": "B003",
+        "to_equipment": "L009",
+        "cores": 3,
+        "size_sqmm": 25,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 60.0,
+        "installation_method": "conduit",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.9,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C010",
+        "from_equipment": "B003",
+        "to_equipment": "L010",
+        "cores": 3,
+        "size_sqmm": 16,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 55.0,
+        "installation_method": "conduit",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.9,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C011",
+        "from_equipment": "B003",
+        "to_equipment": "L011",
+        "cores": 3,
+        "size_sqmm": 35,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 45.0,
+        "installation_method": "conduit",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.9,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C012",
+        "from_equipment": "B003",
+        "to_equipment": "L012",
+        "cores": 4,
+        "size_sqmm": 10,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 30.0,
+        "installation_method": "conduit",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.9,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C013",
+        "from_equipment": "B003",
+        "to_equipment": "L013",
+        "cores": 4,
+        "size_sqmm": 25,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 35.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.8,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C014",
+        "from_equipment": "B001",
+        "to_equipment": "L014",
+        "cores": 3,
+        "size_sqmm": 10,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 80.0,
+        "installation_method": "conduit",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.9,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C015",
+        "from_equipment": "B001",
+        "to_equipment": "L015",
+        "cores": 4,
+        "size_sqmm": 16,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 25.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.8,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C016",
+        "from_equipment": "B001",
+        "to_equipment": "L016",
+        "cores": 4,
+        "size_sqmm": 4,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 65.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.75,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C017",
+        "from_equipment": "B001",
+        "to_equipment": "L017",
+        "cores": 4,
+        "size_sqmm": 35,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 40.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.7,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      },
+      {
+        "id": "C018",
+        "from_equipment": "B001",
+        "to_equipment": "L018",
+        "cores": 4,
+        "size_sqmm": 2.5,
+        "cable_type": "XLPE",
+        "insulation": "PVC",
+        "length_m": 70.0,
+        "installation_method": "tray",
+        "armored": true,
+        "shielded": false,
+        "grouping_factor": 0.8,
+        "current_carrying_capacity_a": null,
+        "voltage_drop_v": null,
+        "voltage_drop_percent": null
+      }
+    ],
+    "protection_devices": [
+      {
+        "id": "BR001",
+        "type": "MCCB",
+        "load_id": "L001",
+        "rated_current_a": 40.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR002",
+        "type": "MCCB",
+        "load_id": "L002",
+        "rated_current_a": 32.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR003",
+        "type": "MCCB",
+        "load_id": "L003",
+        "rated_current_a": 50.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR004",
+        "type": "MCB",
+        "load_id": "L004",
+        "rated_current_a": 20.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": "C",
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR005",
+        "type": "MCB",
+        "load_id": "L005",
+        "rated_current_a": 16.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": "C",
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR006",
+        "type": "MCCB",
+        "load_id": "L006",
+        "rated_current_a": 63.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR007",
+        "type": "MCCB",
+        "load_id": "L007",
+        "rated_current_a": 125.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR008",
+        "type": "MCCB",
+        "load_id": "L008",
+        "rated_current_a": 63.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR009",
+        "type": "MCB",
+        "load_id": "L009",
+        "rated_current_a": 63.0,
+        "rated_voltage_v": 230.0,
+        "poles": 1,
+        "breaking_capacity_ka": 10.0,
+        "curve_type": "C",
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR010",
+        "type": "MCB",
+        "load_id": "L010",
+        "rated_current_a": 50.0,
+        "rated_voltage_v": 230.0,
+        "poles": 1,
+        "breaking_capacity_ka": 10.0,
+        "curve_type": "C",
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR011",
+        "type": "MCCB",
+        "load_id": "L011",
+        "rated_current_a": 80.0,
+        "rated_voltage_v": 230.0,
+        "poles": 1,
+        "breaking_capacity_ka": 10.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR012",
+        "type": "MCCB",
+        "load_id": "L012",
+        "rated_current_a": 40.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR013",
+        "type": "MCCB",
+        "load_id": "L013",
+        "rated_current_a": 80.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR014",
+        "type": "MCB",
+        "load_id": "L014",
+        "rated_current_a": 40.0,
+        "rated_voltage_v": 230.0,
+        "poles": 1,
+        "breaking_capacity_ka": 10.0,
+        "curve_type": "C",
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR015",
+        "type": "MCCB",
+        "load_id": "L015",
+        "rated_current_a": 50.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR016",
+        "type": "MCCB",
+        "load_id": "L016",
+        "rated_current_a": 32.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR017",
+        "type": "MCCB",
+        "load_id": "L017",
+        "rated_current_a": 80.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": null,
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      },
+      {
+        "id": "BR018",
+        "type": "MCB",
+        "load_id": "L018",
+        "rated_current_a": 20.0,
+        "rated_voltage_v": 400.0,
+        "poles": 3,
+        "breaking_capacity_ka": 35.0,
+        "curve_type": "C",
+        "frame_size": null,
+        "electronic_trip": false,
+        "standard": "IEC",
+        "ip_rating": "IP20"
+      }
+    ],
+    "metadata": {
+      "voltage_levels": [
+        230.0,
+        400.0
+      ],
+      "system_summary": {
+        "total_installed_capacity_kw": 293.7,
+        "total_loads": 18,
+        "total_buses": 3,
+        "total_transformers": 1,
+        "total_cables": 18,
+        "total_breakers": 18
+      },
+      "standards": {
+        "electrical_standard": "IEC",
+        "voltage_system": "LV/MV",
+        "frequency_hz": 50,
+        "ambient_temperature_c": 35.0
+      },
+      "sld_properties": {
+        "page_size": "A3",
+        "orientation": "landscape",
+        "scale": "1:100",
+        "grid_size": 10,
+        "voltage_level_colors": {
+          "400.0": "#FF6B6B",
+          "230.0": "#4ECDC4",
+          "11000.0": "#45B7D1"
+        }
+      },
+      "generation_timestamp": "2025-10-30T20:04:47.896Z",
+      "tool_compatibility": [
+        "AutoCAD Electrical",
+        "ETAP",
+        "EPLAN",
+        "SolidWorks Electrical"
+      ]
+    },
+    "validation": {
+      "is_valid": false,
+      "errors": [
+        "Bus 'Main Distribution Bus (MDB)' has loads with different voltages: {400.0, 230.0}",
+        "Bus 'Office & Amenities Distribution Bus' has loads with different voltages: {400.0, 230.0}"
+      ],
+      "warnings": [],
+      "checks_performed": [
+        "connectivity_validation",
+        "voltage_consistency",
+        "id_uniqueness"
+      ]
+    }
+  },
+  "diagram_mermaid": "graph TD\n    T001[Main Power Transformer<br/>1250.0kVA<br/>11000.0V/400.0V]\n    B001[Main Distribution Bus (MDB)<br/>400.0V<br/>2000.0A]\n    B002[Production Area Distribution Bus<br/>400.0V<br/>800.0A]\n    B003[Office & Amenities Distribution Bus<br/>400.0V<br/>400.0A]\n    L001[\u2699\ufe0f Motor<br/>CNC Milling Machine 1<br/>15.0kW<br/>400.0V]\n    L002[\u2699\ufe0f Motor<br/>CNC Milling Machine 2<br/>12.0kW<br/>400.0V]\n    L003[\u2699\ufe0f Motor<br/>CNC Lathe<br/>18.0kW<br/>400.0V]\n    L004[\u2699\ufe0f Motor<br/>Main Conveyor Belt Motor<br/>7.5kW<br/>400.0V]\n    L005[\u2699\ufe0f Motor<br/>Secondary Conveyor Motors<br/>5.5kW<br/>400.0V]\n    L006[\u26a1 Load<br/>Welding Robot Power Supply<br/>25.0kW<br/>400.0V]\n    L007[\ud83c\udf21\ufe0f HVAC<br/>Production HVAC System<br/>45.0kW<br/>400.0V]\n    L008[\u2699\ufe0f Motor<br/>Dust Collection System<br/>22.0kW<br/>400.0V]\n    L009[\ud83d\udca1 Lighting<br/>Office Lighting Circuit 1<br/>8.5kW<br/>230.0V]\n    L010[\ud83d\udca1 Lighting<br/>Office Lighting Circuit 2<br/>6.2kW<br/>230.0V]\n    L011[\u26a1 Load<br/>Office Computers & Equipment<br/>12.0kW<br/>230.0V]\n    L012[\u26a1 Load<br/>Kitchen Appliances<br/>15.0kW<br/>400.0V]\n    L013[\ud83c\udf21\ufe0f HVAC<br/>Office HVAC System<br/>28.0kW<br/>400.0V]\n    L014[\ud83d\udca1 Lighting<br/>Emergency Lighting<br/>5.0kW<br/>230.0V]\n    L015[\ud83d\udd0b UPS<br/>Critical Systems UPS<br/>20.0kW<br/>400.0V]\n    L016[\u2699\ufe0f Motor<br/>Process Water Pumps<br/>11.0kW<br/>400.0V]\n    L017[\u2699\ufe0f Motor<br/>Air Compressor<br/>30.0kW<br/>400.0V]\n    L018[\u26a1 Load<br/>Workshop Equipment<br/>8.0kW<br/>400.0V]\n    T001 --> B001\n    T001 --> B002\n    T001 --> B003\n    B001 --> B002\n    B001 --> B003\n    B001 --> L014\n    B001 --> L015\n    B001 --> L016\n    B001 --> L017\n    B001 --> L018\n    B002 --> L001\n    B002 --> L002\n    B002 --> L003\n    B002 --> L004\n    B002 --> L005\n    B002 --> L006\n    B002 --> L007\n    B002 --> L008\n    B003 --> L009\n    B003 --> L010\n    B003 --> L011\n    B003 --> L012\n    B003 --> L013\n    B002 --> BR001[BR001<br/>40.0A]\n    BR001 --> L001\n    B002 --> BR002[BR002<br/>32.0A]\n    BR002 --> L002\n    B002 --> BR003[BR003<br/>50.0A]\n    BR003 --> L003\n    B002 --> BR004[BR004<br/>20.0A]\n    BR004 --> L004\n    B002 --> BR005[BR005<br/>16.0A]\n    BR005 --> L005\n    B002 --> BR006[BR006<br/>63.0A]\n    BR006 --> L006\n    B002 --> BR007[BR007<br/>125.0A]\n    BR007 --> L007\n    B002 --> BR008[BR008<br/>63.0A]\n    BR008 --> L008\n    B003 --> BR009[BR009<br/>63.0A]\n    BR009 --> L009\n    B003 --> BR010[BR010<br/>50.0A]\n    BR010 --> L010\n    B003 --> BR011[BR011<br/>80.0A]\n    BR011 --> L011\n    B003 --> BR012[BR012<br/>40.0A]\n    BR012 --> L012\n    B003 --> BR013[BR013<br/>80.0A]\n    BR013 --> L013\n    B001 --> BR014[BR014<br/>40.0A]\n    BR014 --> L014\n    B001 --> BR015[BR015<br/>50.0A]\n    BR015 --> L015\n    B001 --> BR016[BR016<br/>32.0A]\n    BR016 --> L016\n    B001 --> BR017[BR017<br/>80.0A]\n    BR017 --> L017\n    B001 --> BR018[BR018<br/>20.0A]\n    BR018 --> L018\n\n    classDef transformer fill:#e1f5fe,stroke:#01579b,stroke-width:2px\n    classDef bus fill:#fff3e0,stroke:#e65100,stroke-width:2px\n    classDef load fill:#f3e5f5,stroke:#4a148c,stroke-width:2px\n    classDef breaker fill:#ffebee,stroke:#b71c1c,stroke-width:2px\n\n    class T001 transformer\n    class B001 B002 B003 bus\n    class L001 L002 L003 L004 L005 L006 L007 L008 L009 L010 L011 L012 L013 L014 L015 L016 L017 L018 load\n    class BR001 BR002 BR003 BR004 BR005 BR006 BR007 BR008 BR009 BR010 BR011 BR012 BR013 BR014 BR015 BR016 BR017 BR018 breaker",
+  "validations": {
+    "is_valid": false,
+    "errors": [
+      {
+        "message": "Bus 'Main Distribution Bus (MDB)' has loads with different voltages: {400.0, 230.0}",
+        "severity": "error",
+        "component": "system"
+      },
+      {
+        "message": "Bus 'Office & Amenities Distribution Bus' has loads with different voltages: {400.0, 230.0}",
+        "severity": "error",
+        "component": "system"
+      }
+    ],
+    "warnings": [],
+    "info": []
+  }
+}
