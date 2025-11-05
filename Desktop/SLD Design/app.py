@@ -28,6 +28,13 @@ from calculations import ElectricalCalculationEngine
 # Import standards
 from standards import StandardsFactory
 
+# Import unified processor for AI Excel extraction
+from unified_processor import (
+    UnifiedDataProcessor, ProcessingInterface,
+    create_unified_processor, initialize_processing_status,
+    get_processing_status, ProcessingStatus
+)
+
 # Page configuration
 st.set_page_config(
     page_title="Electrical Design Automation System",
@@ -97,18 +104,39 @@ class ElectricalDesignApp:
 
     def __init__(self):
         # Initialize calculation engine
-        self.calc_engine = ElectricalCalculationEngine()
+        try:
+            self.calc_engine = ElectricalCalculationEngine()
+        except Exception as e:
+            st.error(f"Failed to initialize calculation engine: {e}")
+            self.calc_engine = None
 
         # Load project and calculation results from session state if they exist
-        if 'project' in st.session_state:
-            self.project = st.session_state.project
-        else:
-            self.project: Optional[Project] = None
+        try:
+            if 'project' in st.session_state:
+                self.project = st.session_state.project
+            else:
+                self.project: Optional[Project] = None
+        except Exception as e:
+            st.warning(f"Failed to load project from session state: {e}")
+            self.project = None
 
-        if 'calculation_results' in st.session_state:
-            self.calculation_results = st.session_state.calculation_results
-        else:
+        try:
+            if 'calculation_results' in st.session_state:
+                self.calculation_results = st.session_state.calculation_results
+            else:
+                self.calculation_results = {}
+        except Exception as e:
+            st.warning(f"Failed to load calculation results from session state: {e}")
             self.calculation_results = {}
+
+        # Initialize unified processor with error handling
+        try:
+            self.unified_processor = create_unified_processor(
+                self.project.standard if self.project else "IEC"
+            )
+        except Exception as e:
+            st.error(f"Failed to initialize AI extraction processor: {e}")
+            self.unified_processor = None
 
     def run(self):
         """Main application entry point"""
@@ -124,6 +152,7 @@ class ElectricalDesignApp:
         menu_options = [
             "🏠 Dashboard",
             "⚙️ Project Setup",
+            "🤖 AI Excel Extraction",
             "💡 Load Management",
             "🔧 Equipment Config",
             "🧮 Calculations",
@@ -162,6 +191,8 @@ class ElectricalDesignApp:
             self._dashboard_page()
         elif choice == "⚙️ Project Setup":
             self._project_setup_page()
+        elif choice == "🤖 AI Excel Extraction":
+            self._ai_excel_extraction_page()
         elif choice == "💡 Load Management":
             self._load_management_page()
         elif choice == "🔧 Equipment Config":
@@ -303,6 +334,464 @@ class ElectricalDesignApp:
                 st.session_state.project = self.project
 
                 st.success("Project settings saved successfully!")
+
+    def _ai_excel_extraction_page(self):
+        """AI-powered Excel extraction interface"""
+        st.markdown('<h1 class="section-header">🤖 AI Excel Extraction</h1>', unsafe_allow_html=True)
+
+        # Initialize processing status
+        initialize_processing_status()
+        
+        # Create unified processor
+        unified_processor = create_unified_processor(self.project.standard if self.project else "IEC")
+        
+        # Main interface tabs
+        tab1, tab2, tab3, tab4 = st.tabs(["📤 Upload Excel", "🔄 Processing Status", "✏️ Manual Review", "📊 Results Dashboard"])
+        
+        with tab1:
+            self._render_excel_upload_interface(unified_processor)
+            
+        with tab2:
+            self._render_processing_status_interface(unified_processor)
+            
+        with tab3:
+            self._render_manual_review_interface(unified_processor)
+            
+        with tab4:
+            self._render_results_dashboard_interface(unified_processor)
+
+    def _render_excel_upload_interface(self, unified_processor: UnifiedDataProcessor):
+        """Render Excel file upload interface"""
+        st.markdown("### 📁 Upload Excel File for AI Extraction")
+        
+        # Upload section
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.markdown("""
+            **Supported Excel Formats:**
+            - Load schedules with power, voltage, and equipment details
+            - Cable schedules with specifications and routing information
+            - Bus configurations with ratings and connections
+            - Transformer schedules with ratings and vector groups
+            """)
+            
+            # File uploader
+            uploaded_file = st.file_uploader(
+                "Choose an Excel file",
+                type=['xlsx', 'xls'],
+                help="Upload an Excel file containing electrical project data"
+            )
+            
+            # Project name input
+            project_name = st.text_input(
+                "Project Name",
+                value="AI Extracted Electrical Project",
+                help="Name for the extracted project"
+            )
+            
+        with col2:
+            st.markdown("### 🎯 What the AI Extracts")
+            st.markdown("""
+            **Automatically Detects:**
+            - ✅ Load IDs and specifications
+            - ✅ Power ratings and voltages
+            - ✅ Cable specifications
+            - ✅ Equipment connections
+            - ✅ Bus configurations
+            - ✅ Transformer details
+            """)
+            
+            st.markdown("### 📋 Processing Steps")
+            st.markdown("""
+            1. **File Analysis** - AI analyzes structure
+            2. **Data Extraction** - Intelligent parsing
+            3. **Validation** - Electrical rule checking
+            4. **Enhancement** - Auto-correction
+            5. **Integration** - Project creation
+            """)
+        
+        # Processing options
+        st.markdown("---")
+        st.markdown("### ⚙️ Processing Options")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            auto_validate = st.checkbox("Auto-validate data", value=True, help="Automatically validate against electrical standards")
+            
+        with col2:
+            auto_enhance = st.checkbox("Auto-enhance data", value=True, help="Automatically correct common issues")
+            
+        with col3:
+            calculate_immediately = st.checkbox("Calculate immediately", value=True, help="Perform electrical calculations after extraction")
+        
+        # Process button
+        if uploaded_file and project_name:
+            if st.button("🚀 Start AI Extraction", type="primary", use_container_width=True):
+                with st.spinner("Initializing AI extraction pipeline..."):
+                    # Start processing in session state to enable progress updates
+                    st.session_state.current_processor = unified_processor
+                    st.session_state.uploaded_file = uploaded_file
+                    st.session_state.project_name = project_name
+                    st.session_state.processing_options = {
+                        'auto_validate': auto_validate,
+                        'auto_enhance': auto_enhance,
+                        'calculate_immediately': calculate_immediately
+                    }
+                    
+                    # Process the file
+                    success, message, project = unified_processor.process_excel_upload(uploaded_file, project_name)
+                    
+                    if success:
+                        st.success(f"✅ {message}")
+                        st.info("📊 Switch to the 'Processing Status' tab to see detailed results")
+                    else:
+                        st.error(f"❌ {message}")
+                        
+                        # Provide helpful troubleshooting suggestions
+                        with st.expander("🔧 Troubleshooting Help", expanded=False):
+                            st.markdown("""
+                            **Common issues and solutions:**
+                            
+                            1. **File Format Issues**
+                               - Ensure your Excel file has proper column headers
+                               - Use standard electrical engineering terminology
+                               - Check that data is in tabular format (not merged cells)
+                            
+                            2. **Data Structure Issues**
+                               - Load schedules should have columns like: Load ID, Load Name, Power (kW), Voltage (V)
+                               - Cable schedules should have: Cable ID, From Equipment, To Equipment, Size (mm²)
+                               - Use consistent naming conventions throughout the file
+                            
+                            3. **Content Issues**
+                               - Ensure electrical components have valid specifications
+                               - Check that power ratings and voltages are realistic
+                               - Verify equipment connections make sense
+                            
+                            4. **Try Manual Workflow**
+                               - If AI extraction continues to fail, use the manual workflow
+                               - Create projects through the standard interface
+                               - Export your data to standard formats and retry
+                            """)
+                        
+                    st.rerun()
+        else:
+            st.info("👆 Please upload an Excel file and provide a project name to start extraction")
+            
+        # Sample file download
+        st.markdown("---")
+        st.markdown("### 📥 Sample Excel Files")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            if st.button("📋 Download Sample Load Schedule", use_container_width=True):
+                self._create_sample_excel_file("load_schedule")
+                
+        with col2:
+            if st.button("🔌 Download Sample Cable Schedule", use_container_width=True):
+                self._create_sample_excel_file("cable_schedule")
+    
+    def _render_processing_status_interface(self, unified_processor: UnifiedDataProcessor):
+        """Render processing status and progress interface"""
+        st.markdown("### 🔄 Processing Status & Progress")
+        
+        # Get current status
+        current_status = get_processing_status()
+        
+        if current_status:
+            # Render processing status
+            ProcessingInterface.render_processing_status(current_status)
+            
+            # Show extraction report if available
+            if hasattr(current_status, 'extraction_report') and current_status.extraction_report:
+                st.markdown("---")
+                ProcessingInterface.render_confidence_visualization(current_status.extraction_report)
+                
+                # Show validation issues
+                if current_status.validation_results:
+                    st.markdown("---")
+                    ProcessingInterface.render_validation_issues(current_status.validation_results)
+        else:
+            st.info("💡 Upload an Excel file and start processing to see status here")
+            
+        # Manual workflow option
+        st.markdown("---")
+        st.markdown("### 🔄 Manual Workflow Alternative")
+        
+        if self.project:
+            if st.button("🔄 Process Existing Project Manually", type="secondary"):
+                success, message, enhanced_project = unified_processor.process_manual_workflow(self.project)
+                
+                if success:
+                    st.success(f"✅ {message}")
+                    st.info("📊 Check the Results Dashboard for enhanced project details")
+                else:
+                    st.error(f"❌ {message}")
+                    
+                st.rerun()
+        else:
+            st.info("👆 Create or load a project first to use manual workflow processing")
+
+    def _render_manual_review_interface(self, unified_processor: UnifiedDataProcessor):
+        """Render manual correction interface"""
+        st.markdown("### ✏️ Manual Review & Corrections")
+        
+        # Get correction interface data
+        correction_data = unified_processor.get_correction_interface_data()
+        
+        if correction_data:
+            # Render correction interface
+            ProcessingInterface.render_correction_interface(correction_data)
+            
+            # Handle correction submission
+            if st.button("💾 Apply Manual Corrections", type="primary"):
+                # Collect corrections from session state
+                corrections = {}
+                
+                # Get corrections from text areas (would need to be implemented with proper session state management)
+                for key in st.session_state.keys():
+                    if key.startswith('correction_'):
+                        sheet_name = key.replace('correction_', '')
+                        corrections[sheet_name] = st.session_state[key]
+                
+                # Apply corrections
+                success, message, corrected_project = unified_processor.apply_manual_corrections(corrections)
+                
+                if success:
+                    st.success(f"✅ {message}")
+                    st.info("📊 Corrections applied successfully")
+                else:
+                    st.error(f"❌ {message}")
+                    
+                st.rerun()
+        else:
+            st.info("💡 Process an Excel file first to see items requiring manual review")
+            
+        # High-confidence items confirmation
+        if correction_data and correction_data.get('extraction_confidence', 0) > 0.8:
+            st.markdown("---")
+            st.success("✅ **High Confidence Extraction**")
+            st.markdown("""
+            Your data extraction shows high confidence scores. The system recommends proceeding with minimal manual review.
+            
+            **Recommended Actions:**
+            - ✅ Accept extracted data as-is
+            - ⚠️ Review only low-confidence items (if any)
+            - 📊 Proceed to Results Dashboard
+            """)
+            
+            if st.button("✅ Accept High Confidence Data", type="primary"):
+                st.success("Data accepted and ready for use!")
+                st.info("📊 Navigate to the Results Dashboard or other project pages")
+
+    def _render_results_dashboard_interface(self, unified_processor: UnifiedDataProcessor):
+        """Render comprehensive results dashboard"""
+        st.markdown("### 📊 Results Dashboard")
+        
+        # Get dashboard data
+        dashboard_data = unified_processor.get_processing_dashboard_data()
+        
+        if dashboard_data:
+            # Project summary
+            st.markdown("#### 📋 Project Summary")
+            summary = dashboard_data.get('project_summary', {})
+            
+            col1, col2, col3, col4 = st.columns(4)
+            
+            with col1:
+                st.metric("Project Name", summary.get('project_name', 'N/A'))
+                st.metric("Standard", summary.get('standard', 'N/A'))
+                
+            with col2:
+                st.metric("Total Loads", summary.get('total_loads', 0))
+                st.metric("Total Power", f"{summary.get('total_power_kw', 0):.1f} kW")
+                
+            with col3:
+                st.metric("Total Cables", summary.get('total_cables', 0))
+                st.metric("Total Buses", summary.get('total_buses', 0))
+                
+            with col4:
+                st.metric("Transformers", summary.get('total_transformers', 0))
+                st.metric("Diversity Factor", f"{summary.get('system_diversity_factor', 0):.3f}")
+            
+            # Extraction metrics
+            if 'extraction_metrics' in dashboard_data:
+                st.markdown("#### 🎯 Extraction Performance")
+                metrics = dashboard_data['extraction_metrics']
+                
+                col1, col2, col3 = st.columns(3)
+                
+                with col1:
+                    confidence = metrics.get('overall_confidence', 0) * 100
+                    st.metric("Overall Confidence", f"{confidence:.1f}%")
+                    
+                with col2:
+                    st.metric("Components Extracted", metrics.get('total_components', 0))
+                    
+                with col3:
+                    processing_time = metrics.get('processing_time_seconds', 0)
+                    st.metric("Processing Time", f"{processing_time:.1f}s")
+                
+                # Sheet results breakdown
+                if 'sheet_results' in metrics:
+                    st.markdown("**Sheet-by-Sheet Results:**")
+                    for sheet_name, result in metrics['sheet_results'].items():
+                        confidence = result.get('confidence', 0) * 100
+                        components = result.get('components_extracted', 0)
+                        quality = result.get('data_quality_score', 0) * 100
+                        
+                        col1, col2, col3 = st.columns([2, 1, 1])
+                        with col1:
+                            st.write(f"**{sheet_name}**")
+                        with col2:
+                            st.write(f"Confidence: {confidence:.1f}%")
+                        with col3:
+                            st.write(f"Components: {components}")
+            
+            # Component statistics
+            if 'component_statistics' in dashboard_data:
+                st.markdown("#### 📈 Component Statistics")
+                stats = dashboard_data['component_statistics']
+                
+                # Load statistics
+                if 'loads' in stats:
+                    load_stats = stats['loads']
+                    st.markdown("**Load Analysis:**")
+                    
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.metric("Total Load Power", f"{load_stats.get('total_power_kw', 0):.1f} kW")
+                        st.metric("Average Load", f"{load_stats.get('average_power_kw', 0):.1f} kW")
+                        
+                    with col2:
+                        # Load type distribution
+                        if 'load_types' in load_stats:
+                            st.markdown("**Load Types:**")
+                            for load_type, count in load_stats['load_types'].items():
+                                st.write(f"• {load_type.title()}: {count}")
+                
+                # Cable statistics
+                if 'cables' in stats:
+                    cable_stats = stats['cables']
+                    st.markdown("**Cable Analysis:**")
+                    
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.metric("Total Cable Length", f"{cable_stats.get('total_length_m', 0):.1f} m")
+                        st.metric("Average Length", f"{cable_stats.get('average_length_m', 0):.1f} m")
+                        
+                    with col2:
+                        # Size distribution
+                        if 'size_distribution' in cable_stats:
+                            st.markdown("**Size Distribution:**")
+                            for size, count in list(cable_stats['size_distribution'].items())[:5]:
+                                st.write(f"• {size} mm²: {count} cables")
+            
+            # Validation status
+            if 'validation_status' in dashboard_data:
+                st.markdown("#### 🔍 Validation Status")
+                validation = dashboard_data['validation_status']
+                
+                errors = validation.get('errors', [])
+                warnings = validation.get('warnings', [])
+                
+                if errors:
+                    st.error(f"🚫 **Errors:** {len(errors)} found")
+                    for error in errors[:5]:  # Show first 5 errors
+                        st.error(f"• {error}")
+                    if len(errors) > 5:
+                        st.error(f"... and {len(errors) - 5} more errors")
+                else:
+                    st.success("✅ **No validation errors**")
+                
+                if warnings:
+                    st.warning(f"⚠️ **Warnings:** {len(warnings)} found")
+                    for warning in warnings[:3]:  # Show first 3 warnings
+                        st.warning(f"• {warning}")
+                    if len(warnings) > 3:
+                        st.warning(f"... and {len(warnings) - 3} more warnings")
+                else:
+                    st.success("✅ **No validation warnings**")
+            
+            # Processing history
+            if 'processing_history' in dashboard_data:
+                st.markdown("#### 📜 Processing History")
+                for event in dashboard_data['processing_history']:
+                    timestamp = event.get('timestamp', '')
+                    event_type = event.get('event', '')
+                    details = event.get('details', '')
+                    
+                    st.info(f"**{event_type}** - {details}")
+            
+            # Action buttons
+            st.markdown("---")
+            st.markdown("### 🚀 Next Steps")
+            
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                if st.button("🧮 Run Calculations", type="primary", use_container_width=True):
+                    st.info("Navigate to the Calculations page to run detailed electrical analysis")
+                    
+            with col2:
+                if st.button("📊 View Reports", type="primary", use_container_width=True):
+                    st.info("Navigate to Results & Reports page for detailed analysis")
+                    
+            with col3:
+                if st.button("💾 Save Project", type="primary", use_container_width=True):
+                    self._save_project()
+                    
+        else:
+            st.info("💡 Process an Excel file first to see results dashboard")
+
+    def _create_sample_excel_file(self, file_type: str):
+        """Create sample Excel files for testing"""
+        if file_type == "load_schedule":
+            # Create sample load schedule
+            data = {
+                'Load ID': ['L001', 'L002', 'L003', 'L004', 'L005'],
+                'Load Name': ['Motor Pump', 'HVAC Unit', 'Lighting Panel', 'Control Cabinet', 'Conveyor Motor'],
+                'Power (kW)': [15.5, 25.0, 8.2, 5.5, 11.0],
+                'Voltage (V)': [400, 400, 230, 230, 400],
+                'Phases': [3, 3, 1, 1, 3],
+                'Load Type': ['motor', 'hvac', 'lighting', 'general', 'motor'],
+                'Power Factor': [0.85, 0.80, 0.90, 0.85, 0.85],
+                'Efficiency': [0.92, 0.88, 0.95, 0.90, 0.91],
+                'Source Bus': ['B001', 'B001', 'B002', 'B002', 'B001'],
+                'Priority': ['essential', 'critical', 'non-essential', 'essential', 'essential']
+            }
+            df = pd.DataFrame(data)
+            filename = "sample_load_schedule.xlsx"
+            
+        elif file_type == "cable_schedule":
+            # Create sample cable schedule
+            data = {
+                'Cable ID': ['C001', 'C002', 'C003', 'C004', 'C005'],
+                'From Equipment': ['B001', 'B001', 'B002', 'B002', 'B001'],
+                'To Equipment': ['L001', 'L002', 'L003', 'L004', 'L005'],
+                'Specification': ['4C x 4.0 sq.mm XLPE/PVC/SWA/PVC', '4C x 6.0 sq.mm XLPE/PVC/SWA/PVC',
+                                '3C x 2.5 sq.mm XLPE/PVC/PVC', '3C x 2.5 sq.mm XLPE/PVC/PVC', '4C x 4.0 sq.mm XLPE/PVC/SWA/PVC'],
+                'Cores': [4, 4, 3, 3, 4],
+                'Size (mm²)': [4.0, 6.0, 2.5, 2.5, 4.0],
+                'Length (m)': [45, 38, 22, 15, 52],
+                'Installation': ['tray', 'tray', 'conduit', 'conduit', 'tray']
+            }
+            df = pd.DataFrame(data)
+            filename = "sample_cable_schedule.xlsx"
+        
+        # Save to Excel
+        df.to_excel(filename, index=False)
+        
+        # Download button
+        with open(filename, 'rb') as f:
+            st.download_button(
+                label=f"📥 Download {filename}",
+                data=f,
+                file_name=filename,
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
 
     def _load_management_page(self):
         """Load management interface"""
